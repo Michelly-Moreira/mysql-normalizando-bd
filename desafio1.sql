@@ -1,0 +1,53 @@
+DROP DATABASE IF EXISTS SpotifyClone;
+
+CREATE DATABASE IF NOT EXISTS SpotifyClone;
+
+USE SpotifyClone;
+
+CREATE TABLE plan(
+id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+plan VARCHAR(10) NOT NULL,
+value_plan DOUBLE NOT NULL,
+assignature_date DATE NOT NULL
+);
+
+CREATE TABLE users(
+id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+user_name VARCHAR(100) NOT NULL,
+age INT NOT NULL,
+plan_id INT NOT NULL,
+FOREIGN KEY (plan_id) REFERENCES plan(id)
+);
+
+CREATE TABLE musics(
+id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+musics VARCHAR(100) NOT NULL,
+duration_in_seconds VARCHAR(7)
+);
+
+CREATE TABLE album(
+id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+album VARCHAR(100) NOT NULL,
+release_year INT NOT NULL,
+musics_id INT NOT NULL,
+FOREIGN KEY (musics_id) REFERENCES musics(id)
+);
+
+CREATE TABLE artist(
+id INT PRIMARY KEY AUTO_INCREMENT,
+artist VARCHAR(100) 
+);
+
+CREATE TABLE reproduction_historic(
+id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+user_id INT NOT NULL,
+music_id INT NOT NULL,
+reproduction_date DATETIME NOT NULL DEFAULT now(),
+follower INT NOT NULL,
+following INT NOT NULL,
+CONSTRAINT PRIMARY KEY(user_id, music_id, follower, following),
+FOREIGN KEY (user_id) REFERENCES users(id),
+FOREIGN KEY (music_id) REFERENCES music(id),
+FOREIGN KEY (follower) REFERENCES users(id),
+FOREIGN KEY (following) REFERENCES artist(id)
+);
