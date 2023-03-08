@@ -10,7 +10,7 @@ artist VARCHAR(100)
 CREATE TABLE plans(
 id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 plan VARCHAR(15) NOT NULL,
-value_plan DOUBLE NOT NULL
+value_plan VARCHAR(8)
 ) engine = InnoDB;
 
 CREATE TABLE users(
@@ -69,10 +69,10 @@ artist
 INSERT INTO plans(
 plan, value_plan
 )VALUES(
-'gratuito', 0.00),
-('familiar', 7.99),
-('universitário', 5.99),
-('pessoal', 6.99);
+'gratuito', '0.00'),
+('familiar', '7.99'),
+('universitário', '5.99'),
+('pessoal', '6.99');
 
 INSERT INTO users(
 user_name, age, plan_id, assignature_date
