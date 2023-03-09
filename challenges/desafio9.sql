@@ -1,0 +1,3 @@
+SELECT COUNT(reproduction_historic.user_people_historic) AS musicas_no_historico
+FROM reproduction_historic
+WHERE reproduction_historic.user_people_historic = 1;
